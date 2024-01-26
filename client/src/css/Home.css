@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #FF6347;
+    padding: 1rem;
+}
+
+header hr{
+    margin-top: 1rem;
+    border: black solid 1px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+nav div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav div input {
+    border: black solid 2px;
+    border-radius: 5px;
+    padding: 0.35rem;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+}
+
+nav a:hover {
+    color: antiquewhite;
+}
+
+nav button {
+    background-color: #FF6347;
+    padding: 0.35rem;
+    border: black solid 2px;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin: auto 0.4rem;
+}
+
+nav button:hover {
+    background-color: antiquewhite;
+}
+
+/* chatGpt Helped to do */
+@media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    nav div {
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+
+    nav a,
+    nav button {
+      margin: 0.5rem 0;
+    }
+  }
+
+.example {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow items to wrap to the next line on smaller screens */
+    margin: auto;
+    padding: 6rem;
+}
+
+.content {
+    flex: 100%;
+    /* Full width on smaller screens, will wrap below the image */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.content h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 4rem;
+}
+
+.content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: x-large;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 0;
+    /* Adjusted margin for responsiveness */
+}
+
+.content button{
+    background-color: whitesmoke;
+    padding: 0.5rem;
+    border: black solid 2px;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.content button:hover {
+    background-color: #2E8B57;
+    color:white;
+}
+
+.image {
+    flex: 100%;
+    /* Full width on smaller screens, will be stacked below the content */
+    overflow: hidden;
+    margin-top: 1rem;
+    /* Added margin for separation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img {
+    width: 25rem;
+    clip-path: circle(50% at 49% 51%);
+}
+
+@media (min-width: 768px) {
+
+    /* Adjust styles for screens wider than 768px */
+    .content {
+        flex: 60%;
+    }
+
+    .image {
+        flex: 40%;
+        margin-top: 0;
+        /* Reset margin for larger screens */
+    }
+
+    .content p {
+        margin-right: 4rem;
+    }
+}
