@@ -1,0 +1,108 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+nav div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav div input {
+    border: black solid 2px;
+    border-radius: 5px;
+    padding: 0.35rem;
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+}
+
+nav a:hover {
+    color: antiquewhite;
+}
+
+nav button {
+    background-color: #FF6347;
+    padding: 0.35rem;
+    border: black solid 2px;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin: auto 0.4rem;
+}
+
+nav button:hover {
+    background-color: antiquewhite;
+}
+
+/* chatGpt Helped to do */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav div {
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    nav a,
+    nav button {
+        margin: 0.5rem 0;
+    }
+}
+
+/* Style the dropdown button and content */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropbtn {
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: #2E8B57;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    border-radius: 10px;
+}

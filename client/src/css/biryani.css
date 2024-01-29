@@ -1,0 +1,10 @@
+.biryanicontainer{
+    display: flex;
+    justify-content: center;
+    background-color: #FF6347;
+    padding: 1rem;
+}
+
+.biryaniheader{
+    font-family: 'Montserrat', sans-serif;
+}

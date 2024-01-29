@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/Home.css";
-import { MdDeliveryDining } from "react-icons/md";
-import { useState } from "react";
+import Navbar from "./Navbar";
 import popular from "../utils/data";
 
 import { AiFillInstagram } from "react-icons/ai";
@@ -9,33 +8,10 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 
 const Home = () => {
-  const [login, setLogin] = useState(false);
   return (
     <>
       <header>
-        <nav>
-          <div>
-            <MdDeliveryDining
-              style={{ fontSize: "2rem", marginRight: "1rem" }}
-            />
-            <a href="/">Home</a>
-            <a href="#part2">Yummy</a>
-            <a href="#part3">About</a>
-          </div>
-          <div>
-            <input type="text" placeholder="Search.." />
-            {login ? (
-              <>
-                <button href="/">Logout</button>
-              </>
-            ) : (
-              <>
-                <button href="/signup">SignUp</button>
-                <button href="/login">Login</button>
-              </>
-            )}
-          </div>
-        </nav>
+        <Navbar />
         <hr />
         <div className="example">
           <div className="content">
@@ -82,9 +58,9 @@ const Home = () => {
             })}
           </div>
         </div>
+        <hr />  
       </header>
-      <hr />
-      <footer id="part3">
+      <footer id="section3">
         <div className="footerContainer">
           <div className="popular">
             <h1>
