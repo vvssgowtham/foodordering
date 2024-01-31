@@ -1,4 +1,5 @@
 import React from "react";
+import { store } from "../App";
 import "../css/biryani.css";
 
 function Biryani() {

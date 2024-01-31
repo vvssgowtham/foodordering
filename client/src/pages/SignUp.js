@@ -26,10 +26,12 @@ function SignUp() {
     email: '',
     password: '',
   });
+  const [loading,setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const response = await axios
       .post("http://localhost:5000/signup", formData)
       .then((response) => {
@@ -124,8 +126,9 @@ function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={loading}
             >
-              Sign Up
+              {loading ? 'loading' : 'Sign Up'}
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>

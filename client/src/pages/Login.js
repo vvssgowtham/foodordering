@@ -26,21 +26,26 @@ const defaultTheme = createTheme();
 //we are using contextAPI to send data directly from one component to another without any intermediate component.
 function Login() {
   //to use the state
+  const [formData,setFormData] = useState({email:"",password:""});
   const [token, setToken] = useContext(store);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-
-    const [formData,setFormData] = useState({email:"",password:""});
     event.preventDefault();
-    try{
-        const response = await axios("http://localhost:3000/login",formData);
+    await axios.post("http://localhost:5000/login", formData)
+      .then(response => {
         setToken(response.data.token);
+        console.log(response.data.token);
+        setFormData({ email: "", password: "" });
+      })
+      .catch(error => {
+        console.log("LoginError", error);
+      });
+  };  
 
-    }catch(e){
-        console.log("LoginError");
-    }
-  };
+  if(token){
+    navigate("/")
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -110,7 +115,7 @@ function Login() {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="#" variant="body2" onClick={() => {navigate("/signup")}} >
+                  <Link variant="body2" onClick={() => {navigate("/signup")}} >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
