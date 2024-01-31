@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const axios = require("axios");
 const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken")
 
 const mongoose = require("mongoose");
 const {UserData} = require("./database")
@@ -32,6 +33,36 @@ app.post("/signup", async (req, res) => {
         return res.status(400).json({ error: "Registration failed" });
     }
 });
+
+app.post("/login",async (req,res) => {
+  const {email,password} = req.body;
+  try{
+    const exist = await UserData.findOne({email});
+    if(!exist){
+      return res.status("404").json({"message" : "Invalid Email"});
+    }
+    const passkey = exist.password;
+    if(passkey !== password){
+      return res.status("404").json({"message" : "Incorrect Password"});
+    }
+
+    const payload ={ 
+      user : {
+        id : exist._id,
+      }
+    }
+    
+    jwt.sign(payload,"secretkey",async (req,token) => {
+      if(!token){
+        return res.status(404).json({"message" : "token not Generated"});
+      }
+      return res.status(200).json({"token" : token});
+    })
+    
+  }catch(e){
+    return res.status(500).json({"message" : "loginError"})
+  }
+})
 
 app.listen(5000, () => {
   console.log("Server listening on port 5000");
