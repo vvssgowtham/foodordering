@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MdDeliveryDining } from "react-icons/md";
 import "../css/nav.css";
 import { useNavigate } from "react-router-dom";
+import { IoMdCart } from "react-icons/io";
 
 function Navbar() {
   const [login, setLogin] = useState(false);
@@ -21,10 +22,10 @@ function Navbar() {
               Categories&#9662;
             </a>
             <div className="dropdown-content">
-              <a href="/soup"><u>Soup's</u></a>
-              <a href="/starter"><u>Starter's</u></a>
-              <a href="/biryani"><u>Biryani's</u></a>
-              <a href="/desert"><u>Desert's</u></a>
+              <a href="/food"><u>Soup's</u></a>
+              <a href="/food"><u>Starter's</u></a>
+              <a href="/food"><u>Biryani's</u></a>
+              <a href="/food"><u>Desert's</u></a>
             </div>
           </div>
         </div>
@@ -40,6 +41,7 @@ function Navbar() {
               <button onClick={() => navigate("/login")}>Login</button>
             </>
           )}
+            <IoMdCart style={{ fontSize: "2rem" }}></IoMdCart>
         </div>
       </nav>
     </>

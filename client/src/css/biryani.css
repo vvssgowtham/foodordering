@@ -1,10 +1,74 @@
-.biryanicontainer{
+.foodContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     background-color: #FF6347;
     padding: 1rem;
 }
 
-.biryaniheader{
+.foodContainer h1 {
     font-family: 'Montserrat', sans-serif;
+    color: black;
+    margin: 1rem;
+}
+
+.foodCards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.foodCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 20%;
+}
+
+.foodCard img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.foodCard h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    margin-top: 1rem;
+}
+
+.foodCard .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.buttons button {
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.buttons button:hover {
+    background-color: #2E8B57;
+    color: white;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .foodCard {
+        width: 45%; /* Adjust the width for smaller screens */
+    }
 }
