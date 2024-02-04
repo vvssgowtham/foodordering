@@ -1,13 +1,18 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect } from "react";
 import { MdDeliveryDining } from "react-icons/md";
 import "../css/nav.css";
 import { useNavigate } from "react-router-dom";
-import { IoMdCart } from "react-icons/io";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+import { useContext } from "react";
+import { store } from "../App";
 
 function Navbar() {
-  const [login, setLogin] = useState(false);
+  const [token, setToken] = useContext(store);
   const navigate = useNavigate();
+
+  useEffect(() => console.log(`Token : ${token}`), [token]);
 
   return (
     <>
@@ -22,18 +27,33 @@ function Navbar() {
               Categories&#9662;
             </a>
             <div className="dropdown-content">
-              <a href="/food"><u>Soup's</u></a>
-              <a href="/food"><u>Starter's</u></a>
-              <a href="/food"><u>Biryani's</u></a>
-              <a href="/food"><u>Desert's</u></a>
+              <a href="/food">
+                <u>Soup's</u>
+              </a>
+              <a href="/food">
+                <u>Starter's</u>
+              </a>
+              <a href="/food">
+                <u>Biryani's</u>
+              </a>
+              <a href="/food">
+                <u>Desert's</u>
+              </a>
             </div>
           </div>
         </div>
         <div>
           <input type="text" placeholder="Search.." />
-          {login ? (
+          {token ? (
             <>
-              <button onClick={() => navigate("/")}>Logout</button>
+              <button
+                onClick={() => {
+                  setToken("");
+                  navigate("/");
+                }}
+              >
+                Logout
+              </button>
             </>
           ) : (
             <>
@@ -41,7 +61,12 @@ function Navbar() {
               <button onClick={() => navigate("/login")}>Login</button>
             </>
           )}
-            <IoMdCart style={{ fontSize: "2rem" }}></IoMdCart>
+          <ShoppingCartIcon
+            className="icon"
+            style={{ fontSize: "2rem" }}
+            onClick={() => navigate("/cart")}
+          >
+          </ShoppingCartIcon>
         </div>
       </nav>
     </>

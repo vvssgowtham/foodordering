@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -13,7 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useContext,useState } from "react";
+import { useContext,useState } from "react";//use context is used to use the state from the contextAPI
 import { useNavigate } from 'react-router-dom';
 
 import { store } from "../App";
@@ -27,20 +25,21 @@ const defaultTheme = createTheme();
 function Login() {
   //to use the state
   const [formData,setFormData] = useState({email:"",password:""});
+
+  //using useContext we are modifying the state of the token
   const [token, setToken] = useContext(store);
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios.post("http://localhost:5000/login", formData)
-      .then(response => {
-        setToken(response.data.token);
-        console.log(response.data.token);
-        setFormData({ email: "", password: "" });
-      })
-      .catch(error => {
-        console.log("LoginError", error);
-      });
+    try{
+      const response = await axios.post("http://localhost:5000/login",formData);
+      alert("Login Successfull ");
+      setToken(response.data.token);
+    }catch(err){
+      console.log(err)
+    }
   };  
 
   if(token){

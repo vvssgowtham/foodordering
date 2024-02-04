@@ -106,3 +106,7 @@ nav button:hover {
     display: block;
     border-radius: 10px;
 }
+
+.icon{
+    cursor: pointer;
+} 
