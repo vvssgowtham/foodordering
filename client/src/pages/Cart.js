@@ -1,28 +1,22 @@
-import React, { useEffect } from "react";
+// Cart.js
+import React, { useContext } from "react";
 import { store } from "../App";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/cart.css";
 
 function Cart() {
-  const [cartitems] = useContext(store);
   const [token] = useContext(store);
-
   const navigate = useNavigate();
 
-  if(!token){
+  // Redirect to login if token is not present
+  if (!token) {
     navigate("/login");
+    return null; // Add this to prevent rendering the rest of the component
   }
 
   return (
-    <div>
+    <div className="cartContainer">
       <h1>Cart</h1>
-      <ul>
-        {cartitems.map((item, index) => (
-          <li key={index}>
-            {item.name} - ₹{item.price}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

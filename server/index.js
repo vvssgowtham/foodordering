@@ -39,11 +39,11 @@ app.post("/login",async (req,res) => {
   try{
     const exist = await UserData.findOne({email});
     if(!exist){
-      return res.status("404").json({"message" : "Invalid Email"});
+      return res.status(404).json({"message" : "Invalid Email"});
     }
     const passkey = exist.password;
     if(passkey !== password){
-      return res.status("404").json({"message" : "Incorrect Password"});
+      return res.status(404).json({"message" : "Incorrect Password"});
     }
 
     const payload ={ 

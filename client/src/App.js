@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -12,10 +12,21 @@ export const store = createContext();
 
 function App() {
   const [token, setToken] = useState("");
-  const [cartitems, setCart] = useState([]); // Ensure cart is initialized as an array
+
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("token", token);
+  },[token]);
 
   return (
-    <store.Provider value={[token, setToken, cartitems, setCart]}>
+    <store.Provider value={[token, setToken]}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,6 +1,4 @@
 import React from "react";
-import { store } from "../App";
-import { useContext } from "react";
 import "../css/biryani.css";
 import { Data } from "../utils/food";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function Food() {
   const navigate = useNavigate();
 
-  const [cartitems, setCart] = useContext(store);
 
   return (
     <div className="foodContainer">
@@ -24,15 +21,7 @@ function Food() {
             <h3>{item.name}</h3>
             <h2>₹{item.price}</h2>
             <div className="buttons">
-              <button
-                onClick={() => {
-                  setCart([
-                    ...cartitems,
-                    { name: item.name, image: item.image, price: item.price },
-                  ]);
-                  alert("Item Added to Cart");
-                }}
-              >
+              <button onClick={() => handleAddToCart(item)}>
                 Add to Cart
               </button>
               <button>Buy Now</button>
