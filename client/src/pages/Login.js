@@ -38,7 +38,7 @@ function Login() {
       alert("Login Successfull ");
       setToken(response.data.token);
     }catch(err){
-      console.log(err)
+      alert("Invalid Email or Password");
     }
   };  
 

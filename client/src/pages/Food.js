@@ -1,11 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import "../css/biryani.css";
 import { Data } from "../utils/food";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cartSlice";
 
 function Food() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();//we need dispatche for dispatching the action to the reducer.
 
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));//This is just passing of product to the another page.
+  }
 
   return (
     <div className="foodContainer">
@@ -24,7 +31,6 @@ function Food() {
               <button onClick={() => handleAddToCart(item)}>
                 Add to Cart
               </button>
-              <button>Buy Now</button>
             </div>
           </div>
         ))}

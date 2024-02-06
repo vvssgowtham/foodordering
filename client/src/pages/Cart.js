@@ -1,11 +1,10 @@
 // Cart.js
 import React, { useContext } from "react";
-import { store } from "../App";
 import { useNavigate } from "react-router-dom";
 import "../css/cart.css";
 
 function Cart() {
-  const [token] = useContext(store);
+  const [token,cart] = useContext(store);
   const navigate = useNavigate();
 
   // Redirect to login if token is not present
@@ -16,7 +15,16 @@ function Cart() {
 
   return (
     <div className="cartContainer">
-      <h1>Cart</h1>
+      <h1>Cart</h1>      
+      <div className="cartCards">
+        {cart.map((item, index) => (
+          <div className="cartCard" key={index}>
+            <img src={item.image} />
+            <h3>{item.name}</h3>
+            <h2>₹{item.price}</h2>
+          </div>
+        ))}
+        </div>
     </div>
   );
 }
