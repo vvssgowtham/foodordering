@@ -23,7 +23,18 @@ const UserSchema = new mongoose.Schema(
     }
 )
 
+
+const cartSchema = new mongoose.Schema(
+    {
+        idValue : Number,
+        image : String,
+        name : String,
+        price : Number,
+        type : String
+    }
+)
 //Creating Model
 const UserData = mongoose.model('UserData', UserSchema);
+const CartData = mongoose.model('CartData',cartSchema);
 
-module.exports = {UserData};
+module.exports = {UserData,CartData};

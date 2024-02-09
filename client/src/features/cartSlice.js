@@ -32,8 +32,10 @@ const cartSlice = createSlice({
         })
       }
 
-      //we will be setting out the items as json objects in the local storage so that when we refresh the page the items will be there in the cart.
+      // //we will be setting out the items as json objects in the local storage so that when we refresh the page the items will be there in the cart.
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+
+      
     },
   },
 });

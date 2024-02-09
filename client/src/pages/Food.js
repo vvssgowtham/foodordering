@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import "../css/biryani.css";
 import { Data } from "../utils/food";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
+import { store } from "../App";
 
 function Food() {
   const navigate = useNavigate();
   const dispatch = useDispatch();//we need dispatche for dispatching the action to the reducer.
+
+  const [token] = useContext(store);
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));//This is just passing of product to the another page.
@@ -28,9 +31,15 @@ function Food() {
             <h3>{item.name}</h3>
             <h2>₹{item.price}</h2>
             <div className="buttons">
-              <button onClick={() => handleAddToCart(item)}>
-                Add to Cart
-              </button>
+              {token ? (
+                <button onClick={() => handleAddToCart(item)}>
+                  Add to Cart
+                </button>
+              ) : (
+                <button onClick={() => alert("Log In to add to Cart")}>
+                  Add to Cart
+                </button>
+              )}
             </div>
           </div>
         ))}
