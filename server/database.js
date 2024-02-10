@@ -26,11 +26,31 @@ const UserSchema = new mongoose.Schema(
 
 const cartSchema = new mongoose.Schema(
     {
-        idValue : Number,
-        image : String,
-        name : String,
-        price : Number,
-        type : String
+        id : {
+            type : Number,
+            required : true
+        },
+        image : {
+            type : String,
+            required : true
+        },
+        name : {
+            type : String,
+            required : true
+        },
+        price : {
+            type : Number,
+            required : true
+        },
+        category : {
+            type : String,
+            required : true
+        },
+        user : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'UserData',
+            required : true
+        }
     }
 )
 //Creating Model

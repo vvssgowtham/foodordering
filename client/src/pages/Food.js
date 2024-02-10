@@ -4,18 +4,18 @@ import "../css/biryani.css";
 import { Data } from "../utils/food";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cartSlice";
+import { addToCartAsync } from "../features/cartSlice";
 import { store } from "../App";
 
 function Food() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();//we need dispatche for dispatching the action to the reducer.
+  const dispatch = useDispatch();
 
   const [token] = useContext(store);
 
-  const handleAddToCart = (item) => {
-    dispatch(addToCart(item));//This is just passing of product to the another page.
-  }
+  const handleAddToCart = async (item) => {
+    dispatch(addToCartAsync(item, token));
+  };
 
   return (
     <div className="foodContainer">
@@ -25,9 +25,9 @@ function Food() {
         </h1>
       </u>
       <div className="foodCards">
-        {Data.filter((item) => item.type === "biryani").map((item, index) => (
+        {Data.filter((item) => item.category === "biryani").map((item, index) => (
           <div className="foodCard" key={index}>
-            <img src={item.image} />
+            <img src={item.image} alt={item.name} />
             <h3>{item.name}</h3>
             <h2>₹{item.price}</h2>
             <div className="buttons">
