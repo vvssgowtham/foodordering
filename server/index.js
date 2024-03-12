@@ -35,34 +35,34 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.post("/addtocart", middleware, async (req, res) => {
-  const { cartItems} = req.body;
-  console.log(cartItems)
-  const userId = req.user.id;
-  try {
-    const user = await UserData.findById(userId);
-    if (!user) {
-      return res.status(400).json({ error: "User not found" });
-    }
-    
-    const cartDataArray = cartItems.map(item => ({
-      id: item.id,
-      image: item.image,
-      name: item.name,
-      price: item.price,
-      category: item.category,
-      user: userId,
-    }));
+// app.post("/addtocart", middleware, async (req, res) => {
+//   const { cartItems } = req.body;
+//   const userId = req.user.id;
 
-    console.log(cartDataArray);
-    // Save all CartData instances in one go
-    await CartData.insertMany(cartDataArray);
+//   try {
+//     const user = await UserData.findById(userId);
 
-    return res.status(201).json({ message: "Cart updated successfully" });
-  } catch (error) {
-    return res.status(400).json({ error: "Cart update failed" });
-  }
-});
+//     if (!user) {
+//       return res.status(400).json({ error: "User not found" });
+//     }
+
+//     // Check if the cart items already exist in the user's cart
+//     const existingItems = user.cart.filter(item => cartItems.some(cartItem => cartItem.id === item.id && cartItem.quantity === item.quantity && cartItem.price === item.price && cartItem.name === item.name && cartItem.image === item.image && cartItem.category === item.category));
+
+//     if (existingItems.length > 0) {
+//       return res.status(400).json({ error: "Cart items already exist" });
+//     }
+
+//     // Assuming that the user's cart is an array of items
+//     user.cart = [...user.cart, ...cartItems];
+
+//     await user.save();
+
+//     return res.status(200).json({ message: "Cart updated successfully" });
+//   } catch (error) {
+//     return res.status(400).json({ error: "Cart update failed" });
+//   }
+// });
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
